@@ -39,9 +39,11 @@ function inlinekeyboardmessage ($user_id,$message,$token,$keyboard) {
 // }
 if ($text == '/start'){
 	$message = "سلام !"."\r\n"."به پنهان چت خوشومدی\xF0\x9F\x98\x89"."\r\n"."چه کاری می تونم برات انجام بدم؟🥰";
-	$keyboard = array(
-					array( 'امتیاز من',"امتیاز های برتر"),
-					array( 'شارژ رایگان' , "راهنما"),
+	$keyboard = array(	
+					array(
+						array( 'امتیاز من',"امتیاز های برتر"),
+						array( 'شارژ رایگان' , "راهنما"),
+						)
 				);
 
 	inlinekeyboardmessage ($user_id,$message,$token,$keyboard);
