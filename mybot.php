@@ -13,18 +13,30 @@ $chat = $message->chat;
 $user_id = $chat->id;
 
 
-//Send Text Message With Inline Keyboard
-function bot_keyboardmessage ($user_id,$message,$token,$keyboard) {
+
+function inlinekeyboardmessage ($user_id,$message,$token,$keyboard) {
 	$url = 'https://api.telegram.org/bot'.$token.'/sendMessage';
 	$replyMarkup = array(
-				'keyboard' => $keyboard,
-				'resize_keyboard' => true);
-				$encodedMarkup = json_encode($replyMarkup);
-				$message = urlencode($message);
-				$url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$message.'&reply_markup='.$encodedMarkup;
-				$update = file_get_contents($url);
-			
+				'inline_keyboard' => $keyboard
+			);
+	$encodedMarkup = json_encode($replyMarkup);
+	$url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$message.'&reply_markup='.$encodedMarkup;
+	$update = file_get_contents($url);
 }
+
+
+//Send Text Message With Inline Keyboard
+// function bot_keyboardmessage ($user_id,$message,$token,$keyboard) {
+	// $url = 'https://api.telegram.org/bot'.$token.'/sendMessage';
+	// $replyMarkup = array(
+				// 'keyboard' => $keyboard,
+				// 'resize_keyboard' => true);
+				// $encodedMarkup = json_encode($replyMarkup);
+				// $message = urlencode($message);
+				// $url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$message.'&reply_markup='.$encodedMarkup;
+				// $update = file_get_contents($url);
+			
+// }
 if ($text == '/start'){
 	$message = "سلام !"."\r\n"."به پنهان چت خوشومدی\xF0\x9F\x98\x89"."\r\n"."چه کاری می تونم برات انجام بدم؟🥰";
 	$keyboard = array(
@@ -32,7 +44,7 @@ if ($text == '/start'){
 					array( 'شارژ رایگان' , "راهنما"),
 				);
 
-	bot_keyboardmessage ($user_id,$message,$token,$keyboard);
+	inlinekeyboardmessage ($user_id,$message,$token,$keyboard);
 
 }
 else {
